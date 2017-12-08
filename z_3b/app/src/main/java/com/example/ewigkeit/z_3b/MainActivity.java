@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 k++;
             }
             dataPoints.add(new DataPoint(i,get_func(i)));
-            //dataPoints2.add(new DataPoint(i,get_ans(i,b,coef)));
+            //dataPoints2.add(new DataPoint(i*10,get_ans(i,b,coef)));
         }
         DataPoint[] dataPointsArr = new DataPoint[dataPoints.size()];
         //DataPoint[] dataPointsArr2 = new DataPoint[dataPoints2.size()];
