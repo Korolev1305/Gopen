@@ -30,12 +30,10 @@ public class MainActivity extends AppCompatActivity {
             p.get(0).add(1.0);
             p.get(1).add(1.0);
         }
-        //System.out.println(b);
         for (int i=0;i<coef.size()-1;i++) {
             for (int j = 0; j < x.size(); j++) {
                 coef.get(i+1)[0]+=x.get(j)[0]*p.get(0).get(j)*p.get(0).get(j);
                 coef.get(i)[1]+=p.get(0).get(j)*p.get(0).get(j)/k;
-                //System.out.println(coef.get(i+1)[0]+" "+coef.get(i)[1]);
             }
             k=coef.get(i)[1]*k;
             coef.get(i+1)[0]/=k;
@@ -96,12 +94,6 @@ public class MainActivity extends AppCompatActivity {
             coef.get(i)[0]=0.0;
             coef.get(i)[1]=0.0;
         }
-        /*
-        for(int i=0;i<coef.size();i++) {
-            for (int j = 0; j < 2; j++)
-                System.out.print(coef.get(i)[j]+" ");
-            System.out.println();
-        }*/
         for(double i=0;i<10;i=i+0.01)
             {
                 Double[] z = new Double[2];
@@ -110,30 +102,32 @@ public class MainActivity extends AppCompatActivity {
                 x.add(z);
             }
         get_coef(x,b,coef);
-        System.out.println(b);
         int k=0;
         GraphView graph = (GraphView) findViewById(R.id.graph1);
         ArrayList<DataPoint> dataPoints = new ArrayList();
-        //ArrayList<DataPoint> dataPoints2 = new ArrayList();
+        ArrayList<DataPoint> dataPoints2 = new ArrayList();
         for(double i=0;i<50;i+=0.02)
         {
             if(i>k){
                 System.out.println(i+" "+get_func(i)+" "+get_ans(i,b,coef));
                 k++;
             }
-            dataPoints.add(new DataPoint(i,get_func(i)));
-            //dataPoints2.add(new DataPoint(i*10,get_ans(i,b,coef)));
+            dataPoints.add(new DataPoint(i,get_func(i)+100));
+            if (i<15)
+            dataPoints2.add(new DataPoint(i,get_ans(i,b,coef)));
         }
         DataPoint[] dataPointsArr = new DataPoint[dataPoints.size()];
-        //DataPoint[] dataPointsArr2 = new DataPoint[dataPoints2.size()];
+        DataPoint[] dataPointsArr2 = new DataPoint[dataPoints2.size()];
             for (int j=0;j<dataPoints.size();j++) {
                 dataPointsArr[j] = dataPoints.get(j);
-                //dataPointsArr2[j] = dataPoints2.get(j);
             }
+        for (int j=0;j<dataPoints2.size();j++) {
+            dataPointsArr2[j] = dataPoints2.get(j);
+        }
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dataPointsArr);
-        //LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(dataPointsArr2);
+        LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>(dataPointsArr2);
         graph.addSeries(series);
-        //graph.addSeries(series2);
+        graph.addSeries(series2);
         }
     }
 
