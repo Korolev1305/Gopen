@@ -7,6 +7,8 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
             c.add((y.get(j+1) - y.get(j)) / Math.pow(h.get(j), 2) - b.get(j) / h.get(j));
         }
         for(int i=0;i<x.size();i++)
-        s.add(0.0);
+            s.add(0.0);
         s.set(0,a.get(0));
         for (int i = 0; i < x.size() - 1; i++)
             s.set(i+1,(a.get(i) + h.get(i) * b.get(i) + Math.pow(h.get(i), 2) * c.get(i)));
@@ -55,14 +57,28 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Double> x = new ArrayList<>();
         ArrayList<Double> y = new ArrayList<>();
         ArrayList<Double> s = new ArrayList<>();
+        /*
+        x.add(1.0);y.add(0.0);
+        x.add(1.1);y.add(0.1);
+        x.add(1.2);y.add(0.2);
+        x.add(1.3);y.add(0.3);
+        x.add(1.4);y.add(1.0);
+        x.add(1.5);y.add(0.4);
+        x.add(1.6);y.add(0.5);
+        x.add(1.7);y.add(0.5);
+        x.add(1.8);y.add(0.1);
+        x.add(1.9);y.add(0.6);
+        x.add(2.0);y.add(0.7);
+        */
         for(double i=0;i<10;i+=0.02)
         {
             x.add(i);
             y.add(get_func(i));
         }
+
         for (int i = 0; i < x.size(); i++)
             System.out.println(x.get(i) + " " + y.get(i));
-        //s = get_ans(x, y);
+        s = get_ans(x, y);
         for (int i = 0; i < x.size(); i++) {
             System.out.println(x.get(i) + " " + y.get(i) + " " + s.get(i));
 
